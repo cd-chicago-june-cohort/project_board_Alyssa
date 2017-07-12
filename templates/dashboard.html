@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projects</title>
+</head>
+<body>
+    <a href="/logout">logout</a>
+    <h1>Current Projects:</h1>
+    <table>
+        <thead>
+            <th>Project Name</th>
+            <th>Date Due</th>
+            <th>Action</th>
+        </thead>
+        {% for project in user_projects %}
+            {% if project.status != 'complete' %}
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.date_due}}</td>
+                    <td><a href="/show/{{project.id}}">details</a> | <a href="/destroy/{{project.id}}">delete task</a> | <a href="/complete/{{project.id}}">complete project</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    <br/>
+    <a href="/add">Add a Project</a>
+    <br/>
+    <h1>Completed Projects:</h1>
+    <table>
+        <thead>
+            <th>Project Name</th>
+            <th>Date Due</th>
+            <th>Date Completed</th>
+            <th>Action</th>
+        </thead>
+        {% for project in user_projects %}
+            {% if project.status == 'complete' %}
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.date_due}}</td>
+                    <td>{{project.date_completed}}</td>
+                    <td><a href="/show/{{project.id}}">details</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</body>
+</html>

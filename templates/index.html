@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projects</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %} 
+        {% endif %} 
+    {% endwith %}
+    <h1>Login</h1>
+    <form action='/authenticate' method = 'post'>
+        Email: <input type="text" name="email"><br/>
+        Password: <input type="password" name="password"><br/>
+        <input type="submit" value='Login'>
+    </form>
+    <hr>
+    <h3>New User? Register a new account here:</h3>
+    <form action='/register' method = 'post'>
+        First Name: <input type="text" name='first_name'><br/>
+        Last Name: <input type="text" name='last_name'><br/>
+        Email: <input type="text" name='email'><br/>
+        Date of Birth: <input type="date" name='date_of_birth'><br/>
+        Password: <input type="password" name='password'><br/>
+        <p>Password must be 8 characters or longer</p>
+        Confirm Password: <input type='password' name='pw_confirm'>
+        <input type="submit" value='Register'>
+    </form>
+</body>
+</html>
